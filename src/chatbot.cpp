@@ -33,7 +33,7 @@ ChatBot::ChatBot(std::string filename)
 ChatBot::~ChatBot()
 {
     std::cout << "ChatBot Destructor" << std::endl;
-
+    
     // deallocate heap memory
     if(_image != NULL) // Attention: wxWidgets used NULL and not nullptr
     {
@@ -44,6 +44,53 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
+
+ChatBot::ChatBot(const ChatBot &source)
+{
+    std::cout<<"Copy Constructor"<<std::endl;
+
+    this->_image = source._image;
+    this->_chatLogic= source._chatLogic;
+    this->_currentNode=source._currentNode;
+    this->_rootNode=source._rootNode;
+}
+
+ChatBot& ChatBot::operator=(const ChatBot &source)
+{
+    std::cout<<"Copy Assignment operator"<<std::endl;
+    if(this!= &source)
+    {
+    this->_image = source._image;
+    this->_chatLogic= source._chatLogic;
+    this->_currentNode=source._currentNode;
+    this->_rootNode=source._rootNode;
+    }
+
+    return *this;
+
+}
+
+ChatBot::ChatBot(ChatBot &source)
+{
+    std::cout<<"Move Constructor"<<std::endl;
+    this->_image = std::move(source._image);
+    this->_chatLogic= std::move(source._chatLogic);
+    this->_currentNode= std::move(source._currentNode);
+    this->_rootNode= std::move(source._rootNode);
+
+}
+
+ChatBot& ChatBot::operator=(ChatBot &source)
+{
+    std::cout<<"Move Assignment operator"<<std::endl;
+    this->_image = std::move(source._image);
+    this->_chatLogic= std::move(source._chatLogic);
+    this->_currentNode= std::move(source._currentNode);
+    this->_rootNode= std::move(source._rootNode);
+
+    return *this;
+    
+}
 
 ////
 //// EOF STUDENT CODE

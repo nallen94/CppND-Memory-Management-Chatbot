@@ -1,3 +1,4 @@
 .github/**
 *.png
 build/
+.vscode/
